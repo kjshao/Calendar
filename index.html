@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Scheduler</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="./jquery/1.12.4/jquery.min.js"></script>
+  <script src="./bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+  .jumbotron { 
+      background-color: #0000b3;
+      color: #ffffff;
+  }
+  .navbar {
+      margin-bottom: 0;
+      background-color: #0000b3;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+  }
+  
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+  }
+  </style>
+</head>
+<!-- body -->
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<!-- navbar -->
+<nav class="navbar navbar-right navbar-fixed-top">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#day">DAY</a></li>
+        <li><a href="#week">WEEK</a></li>
+        <li><a href="#month">MONTH</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#login">LOGIN</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- title -->
+<div class="jumbotron text-center">
+  <h1>Scheduler</h1> 
+  <p> Dalian Institute of Chemical Physics, CAS</p>
+</div>
+
+<!-- week -->
+<div id="week" class="container-fluid">
+  <h2>Contextual Classes</h2>
+  <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>            
+  <table class="table" border="1" align="center">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success">
+        <td>8:30-10:30</td>
+        <td> colspan="4" &nbsp;</td>
+        <td> colspan </td>
+      </tr>
+      <tr class="success">
+        <td>10:30-12:00</td>
+      </tr>
+      <tr class="success">
+        <td>12:00-12:30</td>
+      </tr>
+      <tr class="success">
+        <td>12:30-13:00</td>
+      </tr>
+      <tr class="success">
+        <td>13:00-15:00</td>
+      </tr>
+      <tr class="success">
+        <td>15:00-17:00</td>
+      </tr>
+      <tr class="success">
+        <td>17:00-19:45</td>
+      </tr>
+      <tr class="success">
+        <td>19:45-22:00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- contact -->
+<div id="contact" class="container-fluid">
+  <h2 class="text-center">CONTACT</h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Contact us and we'll get back to you within 24 hours.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> kjshao@dicp.ac.cn</p> 
+    </div>
+    <div class="col-sm-7">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right" type="submit">Send</button>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+<!-- footer -->
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Bootstrap Scheduler Made By Kejie Shao.</p> 
+</footer>
+<!-- smooth scrolling -->
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+   // Make sure this.hash has a value before overriding default behavior
+  if (this.hash !== "") {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 900, function(){
+
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
+
+</body>
+</html>
