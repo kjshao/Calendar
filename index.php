@@ -74,7 +74,7 @@
 <!-- week -->
 <div id="scheduler" class="container-fluid">
   <h3>场地安排表</h3>
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <th>时间</th>
       <th colspan=2 class="success">周一</th>
