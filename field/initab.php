@@ -9,9 +9,9 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //creating the table if it not exists
 $sqlCreate = "CREATE TABLE IF NOT EXISTS fbasic (
             id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            day INT(6) NOT NULL,
             time INT(6) NOT NULL,
             depart INT(6) NOT NULL
             )";
 $conn->exec($sqlCreate);
-echo "Table MyGuests created successfully";
 ?>

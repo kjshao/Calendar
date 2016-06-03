@@ -9,6 +9,10 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <?php include 'test.php';?>
+  <?php
+    include 'initdb.php';
+    include 'initab.php';
+    include 'insert.php';
+  ?> 
 </body>
 </html>
