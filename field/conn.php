@@ -14,21 +14,21 @@ if(!$db_selected) {
     $table="fbasic";
     $sqlCreate = "CREATE TABLE IF NOT EXISTS {$table} (
       id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      time VARCHAR(30) NOT NULL,
-      d1a VARCHAR(30) NOT NULL,
-      d1b VARCHAR(30) NOT NULL,
-      d2a VARCHAR(30) NOT NULL,
-      d2b VARCHAR(30) NOT NULL,
-      d3a VARCHAR(30) NOT NULL,
-      d3b VARCHAR(30) NOT NULL,
-      d4a VARCHAR(30) NOT NULL,
-      d4b VARCHAR(30) NOT NULL,
-      d5a VARCHAR(30) NOT NULL,
-      d5b VARCHAR(30) NOT NULL,
-      d6a VARCHAR(30) NOT NULL,
-      d6b VARCHAR(30) NOT NULL,
-      d7a VARCHAR(30) NOT NULL,
-      d7b VARCHAR(30) NOT NULL
+     time VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d1a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d1b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d2a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d2b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d3a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d3b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d4a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d4b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d5a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d5b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d6a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d6b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d7a VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+      d7b VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
     )";
     $result=mysql_query($sqlCreate);
     if(!$result){
