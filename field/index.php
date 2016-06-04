@@ -12,6 +12,7 @@
   <script src="../bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="edit.js"></script>
   <script src="add.js"></script>
+  <script src="delete.js"></script>
   <style>
   .jumbotron {
       background-color: #0000b3;
