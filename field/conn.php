@@ -1,6 +1,7 @@
 <?php
 $dbname="field_basic";
-mysql_query("set names 'UTF8'");
+mysql_query("set names 'UTF8'"); //write
+mysql_query("set character 'UTF8'"); //read
 $conn=mysql_connect("localhost","root","admin123");
 if(!$conn) {
   die('Could not connect: '.mysql_error());
