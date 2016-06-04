@@ -1,3 +1,6 @@
+<?php
+  include "conn.php";
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -7,8 +10,10 @@
   <link rel="stylesheet" href="../bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="../jquery/1.12.4/jquery.min.js"></script>
   <script src="../bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="edit.js"></script>
+  <script src="add.js"></script>
   <style>
-  .jumbotron { 
+  .jumbotron {
       background-color: #0000b3;
       color: #ffffff;
   }
@@ -54,96 +59,8 @@
       color: #f4511e;
   }
   </style>
-<script type="text/javascript">
-$(document).ready(function($) {
-    $(".table td").click(function() {
-     if($(this).children('input').length > 0)
-       return;
-     var td = $(this);
-     var data = $(this).text();
-     $(this).html("");
-     var input = $("<input type='text'>");
-     input.val(data);
-     //input.css("background-color",$(this).css("background-color"));
-     input.css("border-width","0px");
-     input.css("width",$(this).css("width"));
-     //input.css("width",20);
-     input.appendTo($(this));
-     input.trigger("focus");
-     input.trigger("select");  
-     input.keydown(function(event){
-       switch(event.keyCode){
-       case 13:
-         td.html($(this).val());
-         var tds = td.parent("tr").children("td");
-         var i = tds.eq(0).text(); var t = tds.eq(1).text();
-         var x1 = tds.eq(2).text(); var y1 = tds.eq(3).text();
-         var x2 = tds.eq(4).text(); var y2 = tds.eq(5).text();
-         var x3 = tds.eq(6).text(); var y3 = tds.eq(7).text();
-         var x4 = tds.eq(8).text(); var y4 = tds.eq(9).text();
-         var x5 = tds.eq(10).text(); var y5 = tds.eq(11).text();
-         var x6 = tds.eq(12).text(); var y6 = tds.eq(13).text();
-         var x7 = tds.eq(14).text(); var y7 = tds.eq(15).text();
-         $.post("save.php", {
-            id:i,time:t,d1a:x1,d1b:y1,
-            d2a:x2,d2b:y2,d3a:x3,d3b:y3,
-            d4a:x4,d4b:y4,d5a:x5,d5b:y5,
-            d6a:x6,d6b:y6,d7a:x7,d7b:y7
-           },function(data){});
-         break;
-       case 27:
-         td.html(data);
-         break;
-       }
-     }).blur(function(){
-         td.html($(this).val());
-         var tds = td.parent("tr").children("td");
-         var i = tds.eq(0).text(); var t = tds.eq(1).text();
-         var x1 = tds.eq(2).text(); var y1 = tds.eq(3).text();
-         var x2 = tds.eq(4).text(); var y2 = tds.eq(5).text();
-         var x3 = tds.eq(6).text(); var y3 = tds.eq(7).text();
-         var x4 = tds.eq(8).text(); var y4 = tds.eq(9).text();
-         var x5 = tds.eq(10).text(); var y5 = tds.eq(11).text();
-         var x6 = tds.eq(12).text(); var y6 = tds.eq(13).text();
-         var x7 = tds.eq(14).text(); var y7 = tds.eq(15).text();
-         $.post("save.php", {
-            id:i,time:t,d1a:x1,d1b:y1,
-            d2a:x2,d2b:y2,d3a:x3,d3b:y3,
-            d4a:x4,d4b:y4,d5a:x5,d5b:y5,
-            d6a:x6,d6b:y6,d7a:x7,d7b:y7
-           },function(data){});
-     });
-    }); // click function
-}); // ready function
-</script>
 </head>
 <!-- body -->
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "admin123";
-$dbname = "field_basic";
-
-$pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-class TableRows extends RecursiveIteratorIterator { 
-  function __construct($it) { 
-      parent::__construct($it, self::LEAVES_ONLY); 
-  }
-  function current() {
-      //return "<td class='table-clickable'>" . parent::current(). "</td>";
-      return "<td class='info'>" . parent::current(). "</td>";
-  }
-  function beginChildren() {
-      echo "<tr>";
-  } 
-  function endChildren() {
-      echo "</tr>" . "\n";
-  }
-} 
-?>
-
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 <!-- navbar -->
 <nav class="navbar navbar-right navbar-fixed-top">
@@ -163,6 +80,8 @@ class TableRows extends RecursiveIteratorIterator {
 </div>
 
 <!-- week -->
+<button type="button" id="button_add" class="btn btn-success">增加时间段</button>
+<button type="button" id="button_delete" class="btn btn-danger">删除时间段</button>
 <div id="scheduler" class="container-fluid">
   <h3>场地安排表</h3>
 <table class='table table-bordered table-condensed table-striped table-hover'>
@@ -190,12 +109,25 @@ class TableRows extends RecursiveIteratorIterator {
     </thead>
     <tbody>
     <?php
-      $stmt = $pdo->prepare("SELECT id,time,d1a,d1b,d2a,d2b,d3a,d3b,d4a,d4b,d5a,d5b,d6a,d6b,d7a,d7b FROM fbasic"); 
-      $stmt->execute();
-      $row = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-      foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { echo $v;}
+      include "conn.php";
+      $sql = "SELECT id,time,d1a,d1b,d2a,d2b,d3a,d3b,d4a,d4b,d5a,d5b,d6a,d6b,d7a,d7b FROM fbasic";
+      $result=mysql_query($sql,$conn);
+      if(mysql_num_rows($result)>0){
+        while($row=mysql_fetch_assoc($result)){
+          echo "<tr>";
+          echo "<td>{$row["id"]}</td>";
+          echo "<td>{$row["time"]}</td>";
+          echo "<td>{$row["d1a"]}</td>"; echo "<td>{$row["d1b"]}</td>";
+          echo "<td>{$row["d2a"]}</td>"; echo "<td>{$row["d2b"]}</td>";
+          echo "<td>{$row["d3a"]}</td>"; echo "<td>{$row["d3b"]}</td>";
+          echo "<td>{$row["d4a"]}</td>"; echo "<td>{$row["d4b"]}</td>";
+          echo "<td>{$row["d5a"]}</td>"; echo "<td>{$row["d5b"]}</td>";
+          echo "<td>{$row["d6a"]}</td>"; echo "<td>{$row["d6b"]}</td>";
+          echo "<td>{$row["d7a"]}</td>"; echo "<td>{$row["d7b"]}</td>";
+          echo "</tr>";
+        }
+      }
     ?>
-    <?php $pdo=null; ?>
     </tbody>
   </table>
 </div>
