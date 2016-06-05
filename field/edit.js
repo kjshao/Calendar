@@ -17,20 +17,18 @@ $(document).ready(function($) {
        switch(event.keyCode){
        case 13:
          td.html($(this).val());
+         if(!$(this).val()){td.html("&nbsp;")}
          var tds = td.parent("tr").children("td");
-         var i = tds.eq(0).text(); var t = tds.eq(1).text();
-         var x1 = tds.eq(2).text(); var y1 = tds.eq(3).text();
-         var x2 = tds.eq(4).text(); var y2 = tds.eq(5).text();
-         var x3 = tds.eq(6).text(); var y3 = tds.eq(7).text();
-         var x4 = tds.eq(8).text(); var y4 = tds.eq(9).text();
-         var x5 = tds.eq(10).text(); var y5 = tds.eq(11).text();
-         var x6 = tds.eq(12).text(); var y6 = tds.eq(13).text();
-         var x7 = tds.eq(14).text(); var y7 = tds.eq(15).text();
+         var x=["&nbsp;"];
+         for (i=0; i < tds.length; i++){
+           x[i]=tds.eq(i).text();
+           if(!x[i]){x[i]="&nbsp;"}
+         }
          $.post("save.php", {
-            id:i,time:t,d1a:x1,d1b:y1,
-            d2a:x2,d2b:y2,d3a:x3,d3b:y3,
-            d4a:x4,d4b:y4,d5a:x5,d5b:y5,
-            d6a:x6,d6b:y6,d7a:x7,d7b:y7
+            id:x[0],time:x[1],d1a:x[2],d1b:x[3],
+            d2a:x[4],d2b:x[5],d3a:x[6],d3b:x[7],
+            d4a:x[8],d4b:x[9],d5a:x[10],d5b:x[11],
+            d6a:x[12],d6b:x[13],d7a:x[14],d7b:x[15]
            },function(data){});
          break;
        case 27:
@@ -39,20 +37,18 @@ $(document).ready(function($) {
        }
      }).blur(function(){
          td.html($(this).val());
+         if(!$(this).val()){td.html("&nbsp;")}
          var tds = td.parent("tr").children("td");
-         var i = tds.eq(0).text(); var t = tds.eq(1).text();
-         var x1 = tds.eq(2).text(); var y1 = tds.eq(3).text();
-         var x2 = tds.eq(4).text(); var y2 = tds.eq(5).text();
-         var x3 = tds.eq(6).text(); var y3 = tds.eq(7).text();
-         var x4 = tds.eq(8).text(); var y4 = tds.eq(9).text();
-         var x5 = tds.eq(10).text(); var y5 = tds.eq(11).text();
-         var x6 = tds.eq(12).text(); var y6 = tds.eq(13).text();
-         var x7 = tds.eq(14).text(); var y7 = tds.eq(15).text();
+         var x=["&nbsp;"];
+         for (i=0; i < tds.length; i++){
+           x[i]=tds.eq(i).text();
+           if(!x[i]){x[i]="&nbsp;"}
+         }
          $.post("save.php", {
-            id:i,time:t,d1a:x1,d1b:y1,
-            d2a:x2,d2b:y2,d3a:x3,d3b:y3,
-            d4a:x4,d4b:y4,d5a:x5,d5b:y5,
-            d6a:x6,d6b:y6,d7a:x7,d7b:y7
+            id:x[0],time:x[1],d1a:x[2],d1b:x[3],
+            d2a:x[4],d2b:x[5],d3a:x[6],d3b:x[7],
+            d4a:x[8],d4b:x[9],d5a:x[10],d5b:x[11],
+            d6a:x[12],d6b:x[13],d7a:x[14],d7b:x[15]
            },function(data){});
      });
     }); // click function

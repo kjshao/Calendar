@@ -81,16 +81,57 @@
       margin-bottom: 20px;
       color: #000d7d;
   }
+  .effect2
+  {
+    position: relative;
+  }
+  .effect2:before, .effect2:after
+  {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 8px;
+    left: 15px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+  .effect2:after
+  {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
   </style>
 </head>
 <!-- body -->
 <body id="PageHead">
 <!-- navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
+  <div class="container-fluid" style="margin-left:20px; margin-right:20px;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <p class="navbar-brand">礼堂信息查询</p>
+    </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><p class="navbar-brand">礼堂信息查询</p></li>
         <li><a href="#scheduler">场地安排表</a></li>
         <li><a href="#contact">联系我们</a></li>
       </ul>
@@ -116,7 +157,7 @@
   </div>
 <div class="container-fluid">
 <!-- xxx -->
-<div class="panel panel-default box-shadow" style="margin-top: 3px;">
+<div class="panel panel-default effect2" style="margin-top: 3px;">
 <div class="table-responsive">
 <table class='table table-bordered table-striped table-condensed table-hover'>
     <thead>
