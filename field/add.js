@@ -5,6 +5,6 @@ $(document).ready(function($) {
       d2a:'',d2b:'',d3a:'',d3b:'',
       d4a:'',d4b:'',d5a:'',d5b:'',
       d6a:'',d6b:'',d7a:'',d7b:''
-     },function(){alert("增加新时段")});
+     },function(){window.location.href='index.php';});
   });
 });
