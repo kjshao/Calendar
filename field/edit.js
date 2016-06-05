@@ -7,10 +7,9 @@ $(document).ready(function($) {
      $(this).html("");
      var input = $("<input type='text'>");
      input.val(data);
-     //input.css("background-color",$(this).css("background-color"));
+     input.css("background-color",$(this).css("background-color"));
      input.css("border-width","0px");
      input.css("width",$(this).css("width"));
-     //input.css("width",20);
      input.appendTo($(this));
      input.trigger("focus");
      input.trigger("select");  

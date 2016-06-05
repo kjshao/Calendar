@@ -110,14 +110,14 @@
 <!-- week -->
 <div id="scheduler" class="container-fluid">
   <div class="container-fluid">
-    <div class="btn-group btn-group-justified">
      <button type="button" class="btn btn-info btn-outline btn-lg" data-toggle="modal" data-target="#readme">说明</button>
      <button type="button" id="button_add" class="btn btn-success btn-outline btn-lg">增加时间段</button>
      <button type="button" id="button_delete" class="btn btn-danger btn-outline btn-lg">删除时间段</button>
-    </div>
   </div>
 <div class="container-fluid">
+<!-- xxx -->
 <div class="panel panel-default box-shadow" style="margin-top: 3px;">
+<div class="table-responsive">
 <table class='table table-bordered table-striped table-condensed table-hover'>
     <thead>
       <th >编号</th>
@@ -159,6 +159,7 @@
     ?>
     </tbody>
   </table>
+  </div>
   </div>
   </div>
 </div>
