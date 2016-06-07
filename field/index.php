@@ -36,8 +36,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#scheduler">场地安排表</a></li>
-        <li><a href="#contact">联系我们</a></li>
+        <li><a href="#scheduler" style="outline:none" >场地安排表</a></li>
+        <li><a href="#contact" style="outline:none" >联系我们</a></li>
       </ul>
       <form class="navbar-form form-inline navbar-right">
         <?php echo '<input class="form-control" type="text" placeholder="'.date("Y-m-d").'">'; ?>
