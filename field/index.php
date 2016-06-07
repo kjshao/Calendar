@@ -41,12 +41,15 @@
   }
   .table td {
      text-align: center;   
+     vertical-align: middle;
   }
   .table tr {
      text-align: center;   
+     vertical-align: middle;
   }
   .table th {
      text-align: center;   
+     vertical-align: middle;
   }
   .table {
     border: 0.5px solid #000000;
@@ -75,6 +78,9 @@
   }
   .panel {
     border: 1.5px solid #000000;
+  }
+  .btn:focus, .btn:active:focus, .btn.active:focus{
+    outline: none;
   }
   footer .glyphicon {
       font-size: 20px;
@@ -136,7 +142,7 @@
         <li><a href="#contact">联系我们</a></li>
       </ul>
       <form class="navbar-form form-inline navbar-right">
-        <input class="form-control" type="text" placeholder="查询">
+        <?php echo '<input class="form-control" type="text" placeholder="'.date("Y-m-d").'">'; ?>
         <button class="btn btn-success btn-outline" type="submit">查询</button>
       </form>
     </div>
@@ -145,31 +151,40 @@
 <!-- title -->
 <div class="jumbotron text-center">
   <br><br>
-  <h2>礼堂信息查询系统</h2> 
-  <p> 中国科学院大连化学物理研究所</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 text-center">
+        <img src='../DICP-LOGO.svg' height='100'>
+      </div>
+      <div class="col-sm-10 text-left">
+        <h2>礼堂信息查询系统</h2> 
+        <p> 中国科学院大连化学物理研究所</p>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- week -->
 <div id="scheduler" class="container-fluid">
   <div class="container-fluid">
-     <button type="button" class="btn btn-info btn-outline btn-lg" data-toggle="modal" data-target="#readme">说明</button>
-     <button type="button" id="button_add" class="btn btn-success btn-outline btn-lg">增加时间段</button>
-     <button type="button" id="button_delete" class="btn btn-danger btn-outline btn-lg">删除时间段</button>
+     <button type="button" id="btn_readme" class="btn btn-info btn-outline btn-small" data-toggle="modal" data-target="#readme">说明</button>
+     <button type="button" id="button_add" class="btn btn-success btn-outline btn-small">增加时间段</button>
+     <button type="button" id="button_delete" class="btn btn-danger btn-outline btn-small">删除时间段</button>
   </div>
 <div class="container-fluid">
 <!-- xxx -->
 <div class="panel panel-default effect2" style="margin-top: 3px;">
 <div class="table-responsive">
-<table class='table table-bordered table-striped table-condensed table-hover'>
+<table id="main_table" class='table table-bordered table-striped table-condensed table-hover'>
     <thead>
-      <th >编号</th>
-      <th >时间</th>
-      <th colspan=2">周一</th>
-      <th colspan=2">周二</th>
-      <th colspan=2">周三</th>
-      <th colspan=2">周四</th>
-      <th colspan=2">周五</th>
-      <th colspan=2">周六</th>
-      <th colspan=2">周日</th>
+      <th>编号</th>
+      <th>时间</th>
+      <th colspan=2">周一<br><?php echo date("m/d",strtotime("this Monday"));?>   </th>
+      <th colspan=2">周二<br><?php echo date("m/d",strtotime("this Tuesday"));?>  </th>
+      <th colspan=2">周三<br><?php echo date("m/d",strtotime("this Wednesday"));?></th>
+      <th colspan=2">周四<br><?php echo date("m/d",strtotime("this Thursday"));?> </th>
+      <th colspan=2">周五<br><?php echo date("m/d",strtotime("this Friday"));?>   </th>
+      <th colspan=2">周六<br><?php echo date("m/d",strtotime("this Saturday"));?> </th>
+      <th colspan=2">周日<br><?php echo date("m/d",strtotime("this Sunday"));?>   </th>
       <tr>
         <th></th>
         <th>场地</th>
@@ -216,12 +231,12 @@
       <div class="modal-body">
         <ul class="list-group">
           <li class="list-group-item">1、<kbd style="background-color: #9383b5">增加时间段</kbd>
-            在表格底部按添加一行。
+            在表格底部按 编号 顺序添加一行。
           </li>
           <li class="list-group-item">2、<kbd style="background-color: #9383b5">删除时间段</kbd>
             在对话框中输入要删除的行的 编号 进行删除操作。
           </li>
-          <li class="list-group-item">3、除表格头两行及第一列以外，其他表格内容均可编辑。
+          <li class="list-group-item">3、除表格头两行及第一列以外，表格中的其他内容均可编辑。
             单击相应单元格进入编辑状态，输入文字后回车或单击其他单元格更新表格内容。
           </li>
         </ul>
@@ -253,5 +268,24 @@
   <p>CopyRight 1999-2014. Dalian Institute of Chemical Physics, Chinese Academy of Sciences. All Rights Reserved.</p>
   <p>中国科学院大连化学物理研究所 版权所有 辽 ICP 备 05000861 号</p>
 </footer>
+<script>
+  $("#btn_readme").on('focus', function(){
+    $('button').blur();
+  });
+</script>
+<script>
+//  var seen={};
+//  $('#main_table td').each(function(){
+//    var $this=$(this);
+//    var index=$this.index();
+//    var txt=$this.text();
+//    if(seen[index]===txt){
+//      $($this.parent().prev().children()[index]).attr('rowspan',2);
+//      $this.hide();
+//    }else{
+//      seen[index]=txt;
+//    }
+//  });
+</script>
 </body>
 </html>
