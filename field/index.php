@@ -154,7 +154,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2 text-center">
-        <img src='../DICP-LOGO.svg' height='100'>
+        <img src='../dicp.svg' height='100'>
       </div>
       <div class="col-sm-10 text-left">
         <h2>礼堂信息查询系统</h2> 
