@@ -1,172 +1,150 @@
+<?php
+  include "conn.php";
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <title>Scheduler</title>
+  <title>化物所礼堂信息查询</title>
+  <meta name="author" content="Kejie Shao">
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="./jquery/1.12.4/jquery.min.js"></script>
-  <script src="./bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="outline.css">
+  <link rel="stylesheet" href="custom.css">
+  <script src="jquery/1.12.4/jquery.min.js"></script>
+  <script src="bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="edit.js"></script>
+  <script src="add.js"></script>
+  <script src="delete.js"></script>
+  <script src="scroll.js"></script>
   <style>
-  .jumbotron { 
-      background-color: #0000b3;
-      color: #ffffff;
-  }
-  .navbar {
-      margin-bottom: 0;
-      background-color: #0000b3;
-      z-index: 9999;
-      border: 0;
-      font-size: 12px !important;
-      line-height: 1.42857143 !important;
-      letter-spacing: 4px;
-      border-radius: 0;
-  }
-  
-  .navbar li a, .navbar .navbar-brand {
-      color: #fff !important;
-  }
-  
-  .navbar-nav li a:hover, .navbar-nav li.active a {
-      color: #f4511e !important;
-      background-color: #fff !important;
-  }
-  
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
-      color: #fff !important;
-  }
-  .table td {
-     text-align: center;   
-  }
-  .table tr {
-     text-align: center;   
-  }
-  .table th {
-     text-align: center;   
-  }
-  footer .glyphicon {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: #f4511e;
-  }
   </style>
 </head>
 <!-- body -->
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="PageHead">
 <!-- navbar -->
-<nav class="navbar navbar-right navbar-fixed-top">
-  <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid" style="margin-left:20px; margin-right:20px;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <p class="navbar-brand">礼堂信息查询</p>
+    </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#scheduler">场地安排表</a></li>
-        <li><a href="#contact">联系我们</a></li>
+      <ul class="nav navbar-nav">
+        <li><a href="#scheduler" style="outline:none" >场地安排表</a></li>
+        <li><a href="#contact" style="outline:none" >联系我们</a></li>
       </ul>
+      <form class="navbar-form form-inline navbar-right">
+        <?php echo '<input class="form-control" type="text" placeholder="'.date("Y-m-d").'">'; ?>
+        <button class="btn btn-success btn-outline" type="submit">查询</button>
+      </form>
     </div>
   </div>
 </nav>
 <!-- title -->
 <div class="jumbotron text-center">
-  <h2>礼堂信息查询系统</h2> 
-  <p> 中国科学院大连化学物理研究所</p>
+  <br><br>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 text-center">
+        <img src='dicp.svg' height='100'>
+      </div>
+      <div class="col-sm-10 text-left">
+        <h2>礼堂信息查询系统</h2> 
+        <p> 中国科学院大连化学物理研究所</p>
+      </div>
+    </div>
+  </div>
 </div>
-
 <!-- week -->
 <div id="scheduler" class="container-fluid">
-  <h3>场地安排表</h3>
-  <table class="table table-bordered table-hover">
+  <div class="container-fluid">
+     <button type="button" id="btn_readme" class="btn btn-info btn-outline btn-small" data-toggle="modal" data-target="#readme">说明</button>
+     <button type="button" id="button_add" class="btn btn-success btn-outline btn-small">增加时间段</button>
+     <button type="button" id="button_delete" class="btn btn-danger btn-outline btn-small">删除时间段</button>
+  </div>
+<div class="container-fluid">
+<!-- xxx -->
+<div class="panel panel-default effect2" style="margin-top: 3px;">
+<div class="table-responsive">
+<table id="main_table" class='table table-bordered table-striped table-condensed table-hover'>
     <thead>
+      <th>编号</th>
       <th>时间</th>
-      <th colspan=2 class="success">周一</th>
-      <th colspan=2 class="success">周二</th>
-      <th colspan=2 class="success">周三</th>
-      <th colspan=2 class="success">周四</th>
-      <th colspan=2 class="success">周五</th>
-      <th colspan=2 class="success">周六</th>
-      <th colspan=2 class="success">周日</th>
+      <th colspan=2">周一<br><?php echo date("m/d",strtotime("this Monday"));?>   </th>
+      <th colspan=2">周二<br><?php echo date("m/d",strtotime("this Tuesday"));?>  </th>
+      <th colspan=2">周三<br><?php echo date("m/d",strtotime("this Wednesday"));?></th>
+      <th colspan=2">周四<br><?php echo date("m/d",strtotime("this Thursday"));?> </th>
+      <th colspan=2">周五<br><?php echo date("m/d",strtotime("this Friday"));?>   </th>
+      <th colspan=2">周六<br><?php echo date("m/d",strtotime("this Saturday"));?> </th>
+      <th colspan=2">周日<br><?php echo date("m/d",strtotime("this Sunday"));?>   </th>
+      <tr>
+        <th></th>
+        <th>场地</th>
+        <th>A</th> <th>B</th>
+        <th>A</th> <th>B</th>
+        <th>A</th> <th>B</th>
+        <th>A</th> <th>B</th>
+        <th>A</th> <th>B</th>
+        <th>A</th> <th>B</th>
+        <th>A</th> <th>B</th>
+      </tr>                           
     </thead>
     <tbody>
-      <tr>
-        <td>场地</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-        <td class="danger">A</td> <td class="danger">B</td>
-      </tr>                           
-      <tr>
-        <td>8:30-10:30</td>
-        <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-        <td class="info">11</td> <td class="info">2</td>
-        <td rowspan=3 style="vertical-align:middle;" class="info">3</td>
-        <td rowspan=3 style="vertical-align:middle;" class="info">9</td>
-      </tr>
-      <tr>
-        <td>10:30-12:00</td>
-        <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">15</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">1</td>
-      </tr>
-      <tr>
-        <td>12:00-12:30</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=2 class="info">7</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=1 class="info">12</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=1 class="info">8</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=1 class="info">18</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=1 class="info">11</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=2 class="info">机关</td>
-        <td rowspan=2 style="vertical-align:middle;" colspan=2 class="info">7</td>
-      </tr>
-      <tr>
-        <td>12:30-13:00</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">18</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">8</td>
-        <td rowspan=3 style="vertical-align:middle;" class="info">18</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">17</td>
-      </tr>
-      <tr>
-        <td>13:00-15:00</td>
-        <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-      </tr>
-      <tr>
-        <td>15:00-17:00</td>
-        <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-        <td class="info">12</td>
-        <td class="info">机关</td>
-        <td class="info">5</td>
-      </tr>
-      <tr>
-        <td>17:00-19:45</td>
-        <td class="info">15</td>
-        <td class="info">3</td>
-        <td class="info">机关</td>
-        <td class="info">15</td>
-        <td colspan=2 class="info">乒协</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">11</td>
-        <td class="info">12</td>
-        <td colspan=2 class="info">所队</td>
-        <td colspan=2 class="info">15</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">2</td>
-        <td rowspan=2 style="vertical-align:middle;" class="info">6</td>
-      </tr>
-      <tr>
-        <td>19:45-22:00</td>
-        <td colspan=2 class="info">5</td>
-        <td colspan=2 class="info">所队</td>
-        <td class="info">19</td>
-        <td class="info">18</td>
-        <td class="info">9</td>
-        <td class="info">1</td>
-        <td class="info">6</td>
-        <td class="info">11</td>
-        <td class="info">19</td>
-      </tr>
+    <?php
+      include "conn.php";
+      $sql = "SELECT id,time,d1a,d1b,d2a,d2b,d3a,d3b,d4a,d4b,d5a,d5b,d6a,d6b,d7a,d7b FROM fbasic";
+      $result=mysql_query($sql,$conn);
+      if(mysql_num_rows($result)>0){
+        while($row=mysql_fetch_assoc($result)){
+          echo "<tr>";
+          foreach($row as $x=>$x_value){
+            if(empty($x_value)) {$x_value="&nbsp;";}
+            echo "<td>{$x_value}</td>";
+          }
+          echo "</tr>";
+        }
+      }
+    ?>
     </tbody>
   </table>
+  </div>
+  </div>
+  </div>
 </div>
-
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="readme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">使用说明</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">1、<kbd style="background-color: #9383b5">增加时间段</kbd>
+            在表格底部按 编号 顺序添加一行。
+          </li>
+          <li class="list-group-item">2、<kbd style="background-color: #9383b5">删除时间段</kbd>
+            在对话框中输入要删除的行的 编号 进行删除操作。
+          </li>
+          <li class="list-group-item">3、除表格头两行及第一列以外，表格中的其他内容均可编辑。
+            单击相应单元格进入编辑状态，输入文字后回车或单击其他单元格更新表格内容。
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- contact -->
 <div id="contact" class="container-fluid">
   <br>
@@ -182,40 +160,30 @@
 </div>
 <!-- footer -->
 <footer class="container-fluid text-center">
-  <a href="#myPage" title="To Top">
+  <a href="#PageHead" title="返回顶部">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
   <p>CopyRight 1999-2014. Dalian Institute of Chemical Physics, Chinese Academy of Sciences. All Rights Reserved.</p>
   <p>中国科学院大连化学物理研究所 版权所有 辽 ICP 备 05000861 号</p>
 </footer>
-<!-- smooth scrolling -->
 <script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-   // Make sure this.hash has a value before overriding default behavior
-  if (this.hash !== "") {
-
-    // Prevent default anchor click behavior
-    event.preventDefault();
-
-    // Store hash
-    var hash = this.hash;
-
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 600, function(){
-
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
-      });
-    } // End if
+  $("#btn_readme").on('focus', function(){
+    $('button').blur();
   });
-})
 </script>
-
+<script>
+//  var seen={};
+//  $('#main_table td').each(function(){
+//    var $this=$(this);
+//    var index=$this.index();
+//    var txt=$this.text();
+//    if(seen[index]===txt){
+//      $($this.parent().prev().children()[index]).attr('rowspan',2);
+//      $this.hide();
+//    }else{
+//      seen[index]=txt;
+//    }
+//  });
+</script>
 </body>
 </html>
