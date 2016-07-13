@@ -88,9 +88,15 @@
       if(mysql_num_rows($result)>0){
         while($row=mysql_fetch_assoc($result)){
           echo "<tr>";
+          $i = 0;
           foreach($row as $x=>$x_value){
+            $i++;
             if(empty($x_value)) {$x_value="&nbsp;";}
-            echo "<td>{$x_value}</td>";
+            if($i==1){
+              echo "<td class='success'>{$x_value}</td>";
+            }elseif($i>1){
+              echo "<td class='info'>{$x_value}</td>";
+            }
           }
           echo "</tr>";
         }

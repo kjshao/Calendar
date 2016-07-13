@@ -4,6 +4,7 @@ $(document).ready(function($) {
        return;
      var td = $(this);
      var data = $(this).text();
+     reg=/^0[0-9]:[0-5][0-9].0[0-9]:[0-5][0-9]$|^0[0-9]:[0-5][0-9].1[0-9]:[0-5][0-9]$|^0[0-9]:[0-5][0-9].2[0-3]:[0-5][0-9]$|^1[0-9]:[0-5][0-9].1[0-9]:[0-5][0-9]$|^1[0-9]:[0-5][0-9].2[0-3]:[0-5][0-9]$|^2[0-3]:[0-5][0-9].2[0-3]:[0-5][0-9]$/;
      $(this).html("");
      var input = $("<input type='text'>");
      input.val(data);
@@ -17,6 +18,11 @@ $(document).ready(function($) {
        switch(event.keyCode){
        case 13:
          td.html($(this).val());
+         if(!reg.test($(this).val())){
+           alert("时间格式 XX:XX-XX:XX，小于 10 的数前面补 0。范围为 00:00 到 23:59，例如 08:00-10:30，10:30-12:00。");
+           td.html("");
+	   return false;
+         }
          if(!$(this).val()){td.html("&nbsp;")}
          var tds = td.parent("tr").children("td");
          var x=["&nbsp;"];
@@ -43,6 +49,11 @@ $(document).ready(function($) {
        }
      }).blur(function(){
          td.html($(this).val());
+         if(!reg.test($(this).val())){
+           alert("时间格式 XX:XX-XX:XX，小于 10 的数前面补 0。范围为 00:00 到 23:59，例如 08:00-10:30，10:30-12:00。");
+           td.html("");
+	   return false;
+         }
          if(!$(this).val()){td.html("&nbsp;")}
          var tds = td.parent("tr").children("td");
          var x=["&nbsp;"];

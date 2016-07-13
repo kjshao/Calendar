@@ -47,15 +47,6 @@
    -moz-box-shadow: 10px 10px 22px -7px rgba(0,0,0,0.8);
    box-shadow: 10px 10px 22px -7px rgba(0,0,0,0.8);
 }
-.table-hover tbody tr:hover td:hover {
-   background-color: #9383b5;
-   color: #ffffff;
-   display: block;
-   border: 0;
-   -webkit-box-shadow: 0px 0px 29px -1px rgba(147,131,181,1);
-   -moz-box-shadow: 0px 0px 29px -1px rgba(147,131,181,1);
-   box-shadow: 0px 0px 29px -1px rgba(147,131,181,1);
-}
 .panel {
   border: 1.5px solid #000000;
 }

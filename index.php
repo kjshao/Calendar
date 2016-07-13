@@ -172,7 +172,7 @@
             $i++; if(empty($x_value)){$x_value="&nbsp;";}
             if($i==1){
               $idtmp = "row".$nrows;
-              echo "<td class='success'>{$x_value}<span id=$idtmp style='display:none'>$time0</span></td>";
+              echo "<td class='success'>{$x_value}</td><p id=$idtmp style='display:none'>$time0</p>";
             }elseif($i>1){
               $tmp=$i-1;
               $idtmp = "tdx".$nrows."y".$tmp; $time1 = $times[$x] + $time0; $flag=0;
