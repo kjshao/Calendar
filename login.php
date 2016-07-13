@@ -1,4 +1,5 @@
 <?php
+echo "<meta charset='utf-8'>";
 session_start();
 session_unset();
 include "conn.php";
