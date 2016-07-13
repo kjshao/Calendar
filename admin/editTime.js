@@ -1,5 +1,5 @@
 $(document).ready(function($) {
-    $(".editable").click(function() {
+    $(".time").click(function() {
      if($(this).children('input').length > 0)
        return;
      var td = $(this);
