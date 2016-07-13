@@ -79,33 +79,35 @@
     <button id="button_now" class="btn btn-info btn-outline btn-small">本周</button>
     <button id="button_next" class="btn btn-info btn-outline btn-small"><span class="glyphicon glyphicon-menu-right"></span></button>
     <!--<p id="ntime">0</p>-->
+    <?php echo '<button class="btn btn-small btn-success"><span class="glyphicon glyphicon-time"></span>&nbsp;'.date("Y-m-d H:i").'</button>'; ?>
     <p id="ntime" style="display:none">0</p>
   </div>
 <div class="table-responsive">
 <table id="main_table" class='table table-bordered table-striped table-condensed table-hover'>
     <thead>
       <th>时间</th>
-      <th colspan=2>周一<br><span id="day1"><?php echo date("m/d",strtotime("this Monday"));   ?></span></th>
-      <th colspan=2>周二<br><span id="day2"><?php echo date("m/d",strtotime("this Tuesday"));  ?></span></th>
-      <th colspan=2>周三<br><span id="day3"><?php echo date("m/d",strtotime("this Wednesday"));?></span></th>
-      <th colspan=2>周四<br><span id="day4"><?php echo date("m/d",strtotime("this Thursday")); ?></span></th>
-      <th colspan=2>周五<br><span id="day5"><?php echo date("m/d",strtotime("this Friday"));   ?></span></th>
-      <th colspan=2>周六<br><span id="day6"><?php echo date("m/d",strtotime("this Saturday")); ?></span></th>
-      <th colspan=2>周日<br><span id="day7"><?php echo date("m/d",strtotime("this Sunday"));   ?></span></th>
+      <th colspan=2 id="day1">周一<br><?php echo date("m/d",strtotime("this Monday"));   ?></th>
+      <th colspan=2 id="day2">周二<br><?php echo date("m/d",strtotime("this Tuesday"));  ?></th>
+      <th colspan=2 id="day3">周三<br><?php echo date("m/d",strtotime("this Wednesday"));?></th>
+      <th colspan=2 id="day4">周四<br><?php echo date("m/d",strtotime("this Thursday")); ?></th>
+      <th colspan=2 id="day5">周五<br><?php echo date("m/d",strtotime("this Friday"));   ?></th>
+      <th colspan=2 id="day6">周六<br><?php echo date("m/d",strtotime("this Saturday")); ?></th>
+      <th colspan=2 id="day7">周日<br><?php echo date("m/d",strtotime("this Sunday"));   ?></th>
       <tr>
         <th>场地</th>
-        <th>A</th> <th>B</th>
-        <th>A</th> <th>B</th>
-        <th>A</th> <th>B</th>
-        <th>A</th> <th>B</th>
-        <th>A</th> <th>B</th>
-        <th>A</th> <th>B</th>
-        <th>A</th> <th>B</th>
+        <th id="ax1">A</th> <th id="ay1">B</th>
+        <th id="ax2">A</th> <th id="ay2">B</th>
+        <th id="ax3">A</th> <th id="ay3">B</th>
+        <th id="ax4">A</th> <th id="ay4">B</th>
+        <th id="ax5">A</th> <th id="ay5">B</th>
+        <th id="ax6">A</th> <th id="ay6">B</th>
+        <th id="ax7">A</th> <th id="ay7">B</th>
       </tr>                           
     </thead>
     <tbody>
     <?php
       include "conn.php";
+      $today0 = date("m/d",strtotime("Today"));
       $times = array();
       $times["d1a"] = date(strtotime("this Monday"));
       $times["d1b"] = $times["d1a"];
@@ -121,6 +123,7 @@
       $times["d6b"] = $times["d6a"];
       $times["d7a"] = date(strtotime("this Sunday"));
       $times["d7b"] = $times["d7a"];
+      echo "<p id='today0' style='display:none'>{$today0}</p>";
       echo "<p id='timeDay1' style='display:none'>{$times["d1a"]}</p>";
       echo "<p id='timeDay2' style='display:none'>{$times["d1b"]}</p>";
       echo "<p id='timeDay3' style='display:none'>{$times["d2a"]}</p>";
@@ -295,18 +298,6 @@
   $(".btn").on('focus', function(){
     $('button').blur();
   });
-</script>
-<script>
-$(function() {
-  $('#password').password().on('show.bs.password', function(e) {
-    $('#methods').prop('checked', true);
-    }).on('hide.bs.password', function(e) {
-      $('#methods').prop('checked', false);
-    });
-    $('#methods').click(function() {
-      $('#password').password('toggle');
-  });
-});
 </script>
 </body>
 </html>

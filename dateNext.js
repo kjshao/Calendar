@@ -66,3 +66,18 @@ $(document).ready(function($) {
     //////////////////////////////////////////////////////
   });
 });
+
+$(document).ready(function($) {
+  var tmpToday = $("#today0").html();
+  for(i=1; i<=7; i++){
+   var tmp = $("#day"+i).html().slice(6,11);
+   if(tmp==tmpToday){
+     $("#day"+i).removeClass();
+     $("#ax"+i).removeClass();
+     $("#ay"+i).removeClass();
+     $("#day"+i).addClass("success");
+     $("#ax"+i).addClass("success");
+     $("#ay"+i).addClass("success");
+   }
+  }
+});
