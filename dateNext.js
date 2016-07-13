@@ -13,12 +13,14 @@ $(document).ready(function($) {
         d1 = dtmp + 604800000/7*(x*7+i-today+7); // 604800000: 7 days in milliseconds
         var newDate = new Date(d1);
         tmp = $.format.date(newDate,'MM/dd');
-        $("#day"+i).html(tmp);
+        var old = $("#day"+i).html().slice(0,6);
+        $("#day"+i).html(old+tmp);
       }else if(i>=today){
         d1 = dtmp + 604800000/7*(x*7+i-today);
         var newDate = new Date(d1);
         tmp = $.format.date(newDate,'MM/dd');
-        $("#day"+i).html(tmp);
+        var old = $("#day"+i).html().slice(0,6);
+        $("#day"+i).html(old+tmp);
       }
     }
     ////////////////////////////////////////////////////
