@@ -56,13 +56,11 @@ $(document).ready(function($) {
         if(flag==0){
           $("#tdx"+i+"y"+j+"x").removeClass();
           $("#tdx"+i+"y"+j+"x").addClass("info");
-          $("#tdx"+i+"y"+j+"x").html("&nbsp;");
-          $("#tdx"+i+"y"+j).attr('style', 'display: block');
+          $("#tdx"+i+"y"+j+"x").html(tdElement);
         }else if(flag==1){
           $("#tdx"+i+"y"+j+"x").removeClass();
           $("#tdx"+i+"y"+j+"x").addClass("danger");
           $("#tdx"+i+"y"+j+"x").html("/");
-          $("#tdx"+i+"y"+j).attr('style', 'display: none');
         }
       }
     }

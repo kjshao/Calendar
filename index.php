@@ -181,9 +181,9 @@
                 if($time1>=$timeNew0[$j] && $time1<$timeNew1[$j]){$flag=1;}
               }
               if($flag==0){
-                echo "<td id=$idtmpx class='info'><span id=$idtmp>$x_value</span></td>";
+                echo "<td id=$idtmpx class='info'>$x_value</td><p id=$idtmp style='display:none'>$x_value</p>";
               }elseif($flag==1){
-                echo "<td id=$idtmpx class='danger'>/<span id=$idtmp style='display:none'>$x_value</span></td>";
+                echo "<td id=$idtmpx class='danger'>/</td><p id=$idtmp style='display:none'>$x_value</p>";
               }
             }
           }
