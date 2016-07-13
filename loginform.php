@@ -23,7 +23,7 @@
    <div class="col-md-4">
     <input type="text" id="userid" name="userid" class="form-control" placeholder="用户名" required autofocus>
     <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
-    <input class="btn btn-lg btn-primary btn-block" type="submit" value="登入">
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录">
    </div>
    </form>
   </div>

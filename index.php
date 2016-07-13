@@ -39,13 +39,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <!--<li><a data-toggle='modal' href="#login" style="outline:none" >管理员登入</a></li>-->
+        <!--<li><a data-toggle='modal' href="#login" style="outline:none" >管理员登录</a></li>-->
         <li><a href="table.php" target="blank" style="outline:none" >场地分配表</a></li>
         <li><a href="#contact" style="outline:none" >联系我们</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!--<li><a data-toggle='modal' href="#login" style="outline:none" >管理员登入</a></li>-->
-        <li><a href="loginform.php" style="outline:none" >管理员登入</a></li>
+        <!--<li><a data-toggle='modal' href="#login" style="outline:none" >管理员登录</a></li>-->
+        <li><a href="loginform.php" style="outline:none" >管理员登录</a></li>
       </ul>
       <!--<form class="navbar-form form-inline navbar-right">
         <?php //echo '<input class="form-control" type="text" placeholder="'.date("Y-m-d").'">'; ?>
@@ -250,7 +250,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">管理员登入</h4>
+        <h4 class="modal-title" id="myModalLabel">管理员登录</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -266,7 +266,7 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="submit" id="confirm" name="confirm" class="btn btn-success" data-dismiss="modal">登入</button>
+        <button type="submit" id="confirm" name="confirm" class="btn btn-success" data-dismiss="modal">登录</button>
       </div>
     </div>
   </div>

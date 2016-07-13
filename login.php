@@ -18,10 +18,10 @@ if($r=mysql_fetch_assoc($res)) {
     exit();
   }else{
     //echo "<script> alert(\"用户不存在或密码错误！\"); </script>";
-    echo "密码错误！";
+    echo "用户不存在或密码错误！";
     exit();
   }
 }else{
-  echo "用户不存在！";
+  echo "用户不存在或密码错误！";
 }
 ?>
