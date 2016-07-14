@@ -71,15 +71,23 @@ $(document).ready(function($) {
 
 $(document).ready(function($) {
   var tmpToday = $("#today0").html();
+  var id;
   for(i=1; i<=7; i++){
    var tmp = $("#day"+i).html().slice(6,11);
-   if(tmp==tmpToday){
-     $("#day"+i).removeClass();
-     $("#ax"+i).removeClass();
-     $("#ay"+i).removeClass();
-     $("#day"+i).addClass("success");
-     $("#ax"+i).addClass("success");
-     $("#ay"+i).addClass("success");
-   }
+   if(tmp==tmpToday){ id = i; }
+  }
+  $("#day"+id).removeClass();
+  $("#ax"+id).removeClass();
+  $("#ay"+id).removeClass();
+  $("#day"+id).addClass("success");
+  $("#ax"+id).addClass("success");
+  $("#ay"+id).addClass("success");
+  for(i=1; i<id; i++){
+    $("#day"+i).removeClass();
+    $("#ax"+i).removeClass();
+    $("#ay"+i).removeClass();
+    $("#day"+i).addClass("warning");
+    $("#ax"+i).addClass("warning");
+    $("#ay"+i).addClass("warning");
   }
 });
